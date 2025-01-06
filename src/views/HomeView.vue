@@ -5,7 +5,7 @@
             <p> Fill the inputs to add a new fruit </p><br>
             <form class="form">
                 <input @change="e=>newFruit.name=e.target.value" type="text" placeholder="Name" required>
-                <input @change="e=>newFruit.image=e.target.value" type="text" placeholder="Image URL" required>
+                <input @change="e=>newFruit.image=e.target.value" type="url" placeholder="Image URL" required>
                 <input @change="e=>newFruit.price=e.target.value" type="text" placeholder="Price" required>
                 <textarea @change="e=>newFruit.description=e.target.value" required placeholder="Description"/>
                 <input @change="e=>newFruit.taste=e.target.value" type="text" placeholder="Taste" required>
@@ -39,13 +39,14 @@
 </template>
 
 <style>
-    .form input[type='text'], .form input[type='date'], textarea{
+    .form input[type='text'], .form input[type='date'], .form input[type='url'], textarea{
         display:block;
         padding: 10px 20px;
         width: 250px;
         margin: 5px 0;
         border-radius: 8px;
-        border: solid 1px #ebebeb
+        border: solid 1px #ebebeb;
+        box-sizing: border-box;
     }
 
     .form input[type='color']{
@@ -138,14 +139,14 @@
     .fruits{
         display:grid;
         grid-template-columns: 1fr 1fr 1fr;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 20px auto;
         gap: 5px;
     }
 
     .add-div{
         display: flex;
-        width: 70%;
+        max-width: 1000px;
         margin: 0 auto;
         margin-top: 50px;
         justify-content: end;
@@ -205,6 +206,41 @@
 
     .fruit-card h1{
         font-size: 40px;
+    }
+
+    
+    @media screen and (max-width: 1000px) {
+        .fruits{
+            width: 90%;
+        }
+
+        .add-div{
+            width: 90%
+        }
+    }
+
+    @media screen and (max-width: 940px){
+        .fruits{
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media screen and (max-width: 600px){
+        .fruits {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media screen and (max-width: 450px){
+        .modal-card{
+            width: 100%;;
+        }
+   
+        .form *{
+            width: 100%;
+            display: block;
+            max-width: 250px;
+        }
     }
 </style>
 
